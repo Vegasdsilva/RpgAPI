@@ -286,3 +286,4 @@ D:\2DS Matheus e Erickson\DS\Teste\RpgApi\obj\Debug\net8.0\scopedcss\bundle\RpgA
 D:\2DS Matheus e Erickson\DS\Teste\RpgApi\obj\Debug\net8.0\RpgApi.csproj.CopyComplete
 D:\2DS Matheus e Erickson\DS\Teste\RpgApi\obj\Debug\net8.0\RpgApi.genruntimeconfig.cache
 D:\2DS Matheus e Erickson\DS\Teste\RpgApi\obj\Debug\net8.0\ref\RpgApi.dll
+D:\2DS Matheus e Erickson\DS\Teste\RpgApi\obj\Debug\net8.0\RpgApi.sourcelink.json
