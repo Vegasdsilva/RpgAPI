@@ -18,4 +18,4 @@ namespace RpgApi
 
         public int PersonagemId { get; set; }
     }
-}
+}   

@@ -77,7 +77,7 @@ namespace RpgApi.Controllers
 
 
     [HttpGet("GetHabilidades")]
-    public async Task<IActionResult> GetPersonagemHabilidades()
+    public async Task<IActionResult> GetHabilidades()
     {
       try
       {

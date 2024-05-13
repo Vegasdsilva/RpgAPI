@@ -53,7 +53,7 @@ namespace RpgApi.Migrations
                         {
                             Id = 1,
                             Dano = 60,
-                            Nome = "Tauros",
+                            Nome = "Taurus",
                             PersonagemId = 1
                         },
                         new
@@ -100,7 +100,7 @@ namespace RpgApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RpgApi.Models.Enuns.Usuario", b =>
+            modelBuilder.Entity("RpgApi.Models.Habilidade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,55 +108,36 @@ namespace RpgApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DataAcesso")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Dano")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar");
-
-                    b.Property<byte[]>("Foto")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Perfil")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar")
-                        .HasDefaultValue("Jogador");
-
-                    b.Property<string>("Username")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TB_USUARIOS", (string)null);
+                    b.ToTable("TB_HABILIDADES", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Email = "seuEmail@hotmail.com",
-                            Latitude = -23.520024100000001,
-                            Longitude = -46.596497999999997,
-                            PasswordHash = new byte[] { 255, 195, 68, 140, 116, 36, 173, 115, 165, 73, 106, 100, 61, 196, 118, 106, 27, 93, 119, 85, 89, 202, 76, 243, 213, 67, 126, 201, 4, 142, 180, 213, 53, 142, 234, 204, 111, 198, 45, 138, 52, 231, 90, 71, 244, 102, 127, 39, 208, 154, 3, 169, 152, 71, 181, 232, 145, 146, 125, 236, 67, 230, 31, 233, 226, 144, 26, 81, 89, 247, 140, 41, 57, 74, 119, 235, 6, 208, 198, 111, 241, 76, 119, 91, 226, 151, 28, 217, 157, 109, 77, 161, 222, 48, 57, 191, 145, 252, 179, 3, 207, 37, 162, 210, 125, 111, 164, 64, 54, 124, 216, 90, 54, 207, 143, 20, 174, 48, 225, 193, 28, 168, 4, 246, 25, 190, 90, 22 },
-                            Perfil = "Admin",
-                            Username = "UsuarioAdmin"
+                            Dano = 39,
+                            Nome = "Adormecer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Dano = 41,
+                            Nome = "Congelar"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Dano = 37,
+                            Nome = "Hipnotizar"
                         });
                 });
 
@@ -310,6 +291,114 @@ namespace RpgApi.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RpgApi.Models.PersonagemHabilidade", b =>
+                {
+                    b.Property<int>("PersonagemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HabilidadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonagemId", "HabilidadeId");
+
+                    b.HasIndex("HabilidadeId");
+
+                    b.ToTable("TB_PERSONAGENS_HABILIDADES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            PersonagemId = 1,
+                            HabilidadeId = 1
+                        },
+                        new
+                        {
+                            PersonagemId = 2,
+                            HabilidadeId = 3
+                        },
+                        new
+                        {
+                            PersonagemId = 4,
+                            HabilidadeId = 1
+                        },
+                        new
+                        {
+                            PersonagemId = 5,
+                            HabilidadeId = 2
+                        },
+                        new
+                        {
+                            PersonagemId = 6,
+                            HabilidadeId = 2
+                        },
+                        new
+                        {
+                            PersonagemId = 7,
+                            HabilidadeId = 1
+                        });
+                });
+
+            modelBuilder.Entity("RpgApi.Models.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DataAcesso")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Perfil")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar")
+                        .HasDefaultValue("Jogador");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TB_USUARIOS", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "seuEmail@gmail.com",
+                            Latitude = -23.520024100000001,
+                            Longitude = -46.596497999999997,
+                            PasswordHash = new byte[] { 23, 223, 73, 65, 52, 29, 115, 5, 67, 200, 239, 122, 65, 177, 222, 22, 141, 17, 89, 39, 120, 101, 165, 123, 64, 212, 141, 130, 232, 103, 21, 136, 195, 98, 213, 193, 181, 38, 55, 119, 100, 111, 152, 176, 28, 189, 196, 215, 141, 94, 161, 67, 245, 189, 50, 48, 68, 145, 124, 160, 23, 21, 153, 135 },
+                            PasswordSalt = new byte[] { 182, 63, 16, 226, 228, 198, 240, 26, 11, 57, 191, 70, 218, 206, 52, 94, 29, 163, 226, 152, 54, 26, 65, 220, 46, 188, 190, 128, 116, 69, 205, 41, 24, 63, 106, 87, 122, 246, 90, 99, 68, 50, 31, 66, 93, 95, 66, 126, 128, 111, 45, 89, 226, 144, 233, 21, 11, 47, 60, 198, 228, 117, 68, 10, 133, 14, 222, 203, 98, 240, 49, 213, 33, 143, 52, 246, 242, 107, 14, 210, 77, 248, 154, 181, 231, 223, 142, 176, 169, 71, 32, 128, 24, 82, 208, 132, 219, 43, 203, 101, 33, 0, 140, 141, 186, 215, 244, 19, 207, 34, 41, 18, 207, 135, 14, 32, 190, 171, 84, 166, 124, 217, 179, 84, 119, 182, 52, 233 },
+                            Perfil = "Admin",
+                            Username = "UsuarioAdmin"
+                        });
+                });
+
             modelBuilder.Entity("RpgApi.Arma", b =>
                 {
                     b.HasOne("RpgApi.Models.Personagem", "Personagem")
@@ -323,21 +412,47 @@ namespace RpgApi.Migrations
 
             modelBuilder.Entity("RpgApi.Models.Personagem", b =>
                 {
-                    b.HasOne("RpgApi.Models.Enuns.Usuario", "Usuario")
-                        .WithMany("personagens")
+                    b.HasOne("RpgApi.Models.Usuario", "Usuario")
+                        .WithMany("Personagens")
                         .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("RpgApi.Models.Enuns.Usuario", b =>
+            modelBuilder.Entity("RpgApi.Models.PersonagemHabilidade", b =>
                 {
-                    b.Navigation("personagens");
+                    b.HasOne("RpgApi.Models.Habilidade", "Habilidade")
+                        .WithMany("PersonagemHabilidades")
+                        .HasForeignKey("HabilidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RpgApi.Models.Personagem", "Personagem")
+                        .WithMany("PersonagemHabilidades")
+                        .HasForeignKey("PersonagemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Habilidade");
+
+                    b.Navigation("Personagem");
+                });
+
+            modelBuilder.Entity("RpgApi.Models.Habilidade", b =>
+                {
+                    b.Navigation("PersonagemHabilidades");
                 });
 
             modelBuilder.Entity("RpgApi.Models.Personagem", b =>
                 {
                     b.Navigation("Arma");
+
+                    b.Navigation("PersonagemHabilidades");
+                });
+
+            modelBuilder.Entity("RpgApi.Models.Usuario", b =>
+                {
+                    b.Navigation("Personagens");
                 });
 #pragma warning restore 612, 618
         }

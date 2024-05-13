@@ -38,7 +38,7 @@ namespace RpgApi.Controllers
     {
       try
       {
-        Personagem p = await _context.TB_PERSONAGENS
+        Personagem? p = await _context.TB_PERSONAGENS
           .Include(ar => ar.Arma)
           .Include(us => us.Usuario)
           .Include(ph => ph.PersonagemHabilidades)
@@ -113,8 +113,9 @@ namespace RpgApi.Controllers
     {
       try
       {
+        Console.Write(credenciais);
         Usuario? usuario = await _context.TB_USUARIOS
-          .FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
+          .FirstOrDefaultAsync(x => x.Id.Equals(credenciais.Id));
 
         if (usuario == null)
           throw new System.Exception("Usuário não encontrado.");

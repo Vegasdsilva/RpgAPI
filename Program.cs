@@ -1,12 +1,12 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using RpgApi.Data;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
+   options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
 });
 
 // Add services to the container.
@@ -14,11 +14,12 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-options.SerializerSettings.ReferenceLoopHandling =
-Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
 
 var app = builder.Build();
 
